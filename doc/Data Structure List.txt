@@ -1,0 +1,8 @@
+# Data Structure List
+This file contains a list of the data structures in development for this project.
+
+- Vector
+- Linked List
+- Stack
+- Binary Tree
+- Hash Table
