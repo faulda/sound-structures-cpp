@@ -1,0 +1,22 @@
+# Vector Design Doc
+This file contains basic design documentation for the Vector data structure.
+
+## Basic description
+A vector is a dynamically resizable array of elements of the same type that allows random access 
+and fast O(1) (amortized) element insert and O(1) random access.
+
+## Interface
+The following functions will be publically exposed on the Vector class:
+- size() - returns number of elements
+- operator[](int index) - returns element at index
+- push_back(T element) - adds an element onto the end of the Vector
+- pop_back(T element) - removes an element from the end of the Vector
+- clear() - removes all elements from the Vector
+- resize(int size, T element) - resizes the Vector to hold the number of elements specified. The 
+								specified element is used to fill new array spots
+
+## Internal Design
+The vector will be implemented as a dynamically resizing array which will start off with some
+initial size. On each push_back() call, the array will be filled with the pushed elements.
+When the array has no more space, the next push_back() call will trigger a resize - a new
+array will be created and the elements copied over from the old array to the new one. 
