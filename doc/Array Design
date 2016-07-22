@@ -1,0 +1,18 @@
+# Array Design Doc
+This file contains basic design documentation for the Array data structure.
+
+## Basic description
+An array is a fixed-length block of a certain number of elements. The array provides
+O(1) random access to each of these elements for reading and writing. Once created,
+an array's size does not change. Unlike C style arrays, this array will store its
+size and provide an interface to callers to expose that size.
+
+## Interface
+The following functions will be publically exposed on the Vector class:
+- construct(int size) - creates an Array with size number of elements
+- destruct() - releases the array's internal storage memory
+- size() - returns number of elements
+- operator[](int index) - returns element at index
+
+## Internal Design
+The array will be implemented as a C style array.
