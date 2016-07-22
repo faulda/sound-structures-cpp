@@ -27,3 +27,10 @@
 *.exe
 *.out
 *.app
+bin/*
+
+# Visual Studio Files
+*.VC.opendb
+*.VC.db
+*.sln
+
