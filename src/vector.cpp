@@ -40,14 +40,16 @@ template<class T>
 template<class T>
 int64_t size() const
 {
-
+	return num_elements;
 }
 
 // Returns a const reference to the element at the index.
 template<class T>
 const T& operator[](int64_t index) const
 {
+	assert(index >= 0 && index < num_elements);
 
+	return elements[index];
 }
 
 
@@ -55,21 +57,39 @@ const T& operator[](int64_t index) const
 template <class T>
 T& Vector<T>::operator[](int64_t index)
 {
+	assert(index >= 0 && index < num_elements);
 
+	return elements[index];
 }
 
 // Places the element on the end of the Vector. May trigger a resize.
 template<class T>
 void Vector<T>::push_back(const T& element)
 {
+	if (array_size == num_elements)
+	{
+		resize_internal(array_size * 2);
+	}
 
+	elements[num_elements] = element;
+	++num_elements;
 }
 
 // Places all the elements from the input Vector onto the back of this Vector.
 template <class T>
-void Vector<T>::push_back(const Vector<T>& elements)
+void Vector<T>::push_back(const Vector<T>& new_elements)
 {
+	if (num_elements + elements.size() > array_size)
+	{
+		resize_internal(2*(num_elements + elements.size()));
+	}
 
+	for (int64_t index = 0; index < new_elements.size(); ++index)
+	{
+		elements[num_elements + index] = new_elements[index];
+	}
+
+	num_elements += new_elements.size();
 }
 
 // Removes an element from the end of the Vector.
@@ -111,6 +131,16 @@ void Vector<T>::resize(int64_t size, const T& filler_element)
 	}
 }
 
+// Shrinks the Vector to hold only the number of elements specified.
+template <class T>
+void Vector<T>::shrink_to_fit()
+{
+	if (array_size > num_elements)
+	{
+		resize_internal(num_elements);
+	}
+}
+
 // Creates an empty Vector with specified array size.
 template <class T>
 void Vector<T>::init(int64_t size)
@@ -145,13 +175,6 @@ void Vector<T>::destroy()
 
 	num_elements = 0;
 	array_size = 0;
-}
-
-// Returns true if the array is more than twice as big as the number of elements.
-template <class T>
-bool Vector<T>::needs_shrink() const
-{
-	return num_elements * 2 < array_size;
 }
 
 // Changes the allocated capacity of the vector up or down to the specified size.

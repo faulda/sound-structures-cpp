@@ -36,7 +36,7 @@ public:
 	void push_back(const T& element);
 
 	// Places all the elements from the input Vector onto the back of this Vector.
-	void push_back(const Vector<T>& elements);
+	void push_back(const Vector<T>& new_elements);
 	
 	// Removes an element from the end of the Vector.
 	void pop_back();
@@ -47,6 +47,9 @@ public:
 	// Resizes the Vector to hold the number of elements specified. The
 	// input element is used to fill new spots.
 	void resize(int64_t size, const T& filler_element);
+
+	// Shrinks the Vector to hold only the number of elements specified.
+	void shrink_to_fit();
 
 private:
 
