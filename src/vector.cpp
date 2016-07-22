@@ -13,7 +13,7 @@ Vector<T>::Vector() : Vector(Default_Allocation_Size)
 template<class T>
 Vector(int64_t size)
 {
-	Init(size);
+	init(size);
 }
 
 // Copy constructor. Initializes this Vector as a copy of the input.
