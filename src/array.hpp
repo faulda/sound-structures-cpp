@@ -6,7 +6,7 @@
 #include <stdint.h>
 
 template<class T>
-public class Array
+class Array
 {
 public:
 	// Constructs an Array with the specified number of elements. Size must be
@@ -30,6 +30,6 @@ public:
 	T& operator[](int64_t index);
 
 private:
-	int64_t size;
+	int64_t _size;
 	T* elements;
 };

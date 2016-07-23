@@ -5,8 +5,8 @@
 
 #include <stdint.h>
 
-template<class T>
-public class Vector
+template <class T>
+class Vector
 {
 public:
 	Vector();

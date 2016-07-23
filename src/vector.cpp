@@ -5,47 +5,47 @@
 // vector.cpp
 // Function implementations for the Vector class.
 
-template<class T>
+template <class T>
 Vector<T>::Vector() : Vector(Default_Allocation_Size)
 {
 }
 
-template<class T>
-Vector(int64_t size)
+template <class T>
+Vector<T>::Vector(int64_t size)
 {
 	init(size);
 }
 
 // Copy constructor. Initializes this Vector as a copy of the input.
-template<class T>
-Vector(const Vector& vector)
+template <class T>
+Vector<T>::Vector(const Vector<T>& vector)
 {
 	copy(vector);
 }
 
-template<class T>
-const Vector& operator=(const Vector& vector)
+template <class T>
+const Vector<T>& Vector<T>::operator=(const Vector<T>& vector)
 {
 	destroy();
 	copy(vector);
 }
 
-template<class T>
-~Vector()
+template <class T>
+Vector<T>::~Vector()
 {
 	destroy();
 }
 
 // Returns number of elements in the Vector.
-template<class T>
-int64_t size() const
+template <class T>
+int64_t Vector<T>::size() const
 {
 	return num_elements;
 }
 
 // Returns a const reference to the element at the index.
 template<class T>
-const T& operator[](int64_t index) const
+const T& Vector<T>::operator[](int64_t index) const
 {
 	assert(index >= 0 && index < num_elements);
 
