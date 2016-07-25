@@ -8,16 +8,19 @@ delete from any position in the list.
 
 ## Interface
 The following functions will be publically exposed on the Singly Linked List class:
+- SinglyLinkedList() - constructs an empty SinglyLinkedList
+- SinglyLinkedList(SinglyLinkedList) - constructs a copy of the input SinglyLinkedList
+- ~SinglyLinkedList() - deallocates the memory used to create the singly linked list
 - size() - returns number of elements
 - push_front(T element) - adds an element onto the front of the Singly Linked List
 - pop_front() - removes an element from the front of the Singly Linked List
 - push_back(T element) - adds an element onto the end of the Singly Linked List
 - pop_back() - removes an element from the end of the Singly Linked List
 - clear() - removes all elements from the Vector
-
+- empty() - returns true if the list contains 0 elements
 
 ## Internal Design
 The Singly Linked List will be implemented as a series of Node objects, each of which will
 hold an element and a "next" pointer to the next Node in the list. The size of the list
-will be cached (though some calls to insert arbitrary numbers of Nodes will cause either
-the runtime of size() or of insert() to be O(n) instead of O(1)).
+will be cached (though some calls to splice arbitrary numbers of Nodes will cause either
+the runtime of splice() to be O(n) instead of O(1)).
