@@ -10,17 +10,17 @@ Array<T>::Array(int64_t size)
 {
 	assert(size > 0);
 
-	this._size = size;
-	this.elements = new T[_size];
+	_size = size;
+	elements = new T[_size];
 }
 
 // Destroys the Array.
 template <class T>
 Array<T>::~Array()
 {
-	delete this.elements[];
-	this.elements = nullptr;
-	this._size = 0;
+	delete [] elements;
+	elements = nullptr;
+	_size = 0;
 }
 
 // Returns the size of this array.
