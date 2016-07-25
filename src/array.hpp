@@ -33,3 +33,8 @@ private:
 	int64_t _size;
 	T* elements;
 };
+
+
+// Because templated class, implementations must be in same file.
+// They are stored in a separate file, array_impl.hpp.
+#include "array_impl.hpp"

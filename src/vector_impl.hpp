@@ -6,14 +6,15 @@
 // Function implementations for the Vector class.
 
 template <class T>
-Vector<T>::Vector() : Vector(Default_Allocation_Size)
+Vector<T>::Vector()
 {
+	init(Default_Allocation_Size);
 }
 
 template <class T>
-Vector<T>::Vector(int64_t size)
+Vector<T>::Vector(int64_t size, const T& element)
 {
-	init(size);
+	init(size * 2, size, element);
 }
 
 // Copy constructor. Initializes this Vector as a copy of the input.
@@ -79,9 +80,9 @@ void Vector<T>::push_back(const T& element)
 template <class T>
 void Vector<T>::push_back(const Vector<T>& new_elements)
 {
-	if (num_elements + elements.size() > array_size)
+	if (num_elements + new_elements.size() > array_size)
 	{
-		resize_internal(2*(num_elements + elements.size()));
+		resize_internal(2*(num_elements + new_elements.size()));
 	}
 
 	for (int64_t index = 0; index < new_elements.size(); ++index)
@@ -141,19 +142,22 @@ void Vector<T>::shrink_to_fit()
 	}
 }
 
-// Creates an empty Vector with specified array size.
+// Creates a Vector with the specified size.
 template <class T>
-void Vector<T>::init(int64_t size)
+void Vector<T>::init(int64_t arr_size, int64_t num_elems, const T& element)
 {
-	num_elements = 0;
-	array_size = 5;
+	assert(arr_size > 0);
+	assert(num_elems >= 0);
 
-	elements = new T[array_size];
+	num_elements = num_elems;
+	array_size = arr_size;
+
+	elements = new T[static_cast<unsigned int>(array_size)];
 }
 
 // Copies the contents of the input Vector to this Vector.
 template <class T>
-void Vector<T>::copy(const Vector& vector)
+void Vector<T>::copy(const Vector<T>& vector)
 {
 	num_elements = vector.num_elements;
 	array_size = vector.array_size;
@@ -183,9 +187,10 @@ template <class T>
 void Vector<T>::resize_internal(int64_t size)
 {
 	assert(size > 0);
+	assert(num_elements <= size);
 
 	array_size = size;
-	T* new_elements = new T[array_size];
+	T* new_elements = new T[static_cast<unsigned int>(array_size)];
 	for (int64_t index = 0; index < num_elements; ++index)
 	{
 		new_elements[index] = elements[index];
