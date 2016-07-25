@@ -1,0 +1,23 @@
+# Singly Linked List Design Doc
+This file contains basic design documentation for the Singly Linked List data structure.
+
+## Basic description
+A singly linked list is a collection of elements of the same type linked together
+by pointers from the front of the list to the back. It allows fast insert and 
+delete from any position in the list. 
+
+## Interface
+The following functions will be publically exposed on the Singly Linked List class:
+- size() - returns number of elements
+- push_front(T element) - adds an element onto the front of the Singly Linked List
+- pop_front() - removes an element from the front of the Singly Linked List
+- push_back(T element) - adds an element onto the end of the Singly Linked List
+- pop_back() - removes an element from the end of the Singly Linked List
+- clear() - removes all elements from the Vector
+
+
+## Internal Design
+The Singly Linked List will be implemented as a series of Node objects, each of which will
+hold an element and a "next" pointer to the next Node in the list. The size of the list
+will be cached (though some calls to insert arbitrary numbers of Nodes will cause either
+the runtime of size() or of insert() to be O(n) instead of O(1)).
